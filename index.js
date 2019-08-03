@@ -1,6 +1,6 @@
 import express from 'express'
 import graphqlHTTP from 'express-graphql'
-import schema from './schema'
+import { schema } from './schema'
 
 const app = express()
 
@@ -13,7 +13,7 @@ const resolver = {
   hola: () => 'Hola mundo desde graphql'
 }
 
-app.get('/chema graphql', graphqlHTTP({
+app.use('/api', graphqlHTTP({
   // schema a utilizar
   schema,
   // el resolver se pasa como rootValue
