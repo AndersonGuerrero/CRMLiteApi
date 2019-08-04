@@ -4,8 +4,10 @@
 .*.haste_cache.*
 .DS_Store
 .idea
+.env
 npm-debug.log
 
 dist
+build
 node_modules
 coverage

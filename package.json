@@ -4,7 +4,11 @@
   "description": "Graphql-Express-Apollo-Api",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./index.js --exec babel-node -e js"
+    "dev": "nodemon ./src/index.js --exec babel-node -e js",
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run build-babel",
+    "start": "npm run build && node ./build/index.js"
   },
   "repository": {
     "type": "git",

@@ -1,8 +1,8 @@
 import express from 'express'
 import 'dotenv/config'
 import { ApolloServer } from 'apollo-server-express'
-import { typeDefs } from './data/schema'
-import { resolvers } from './data/resolvers'
+import { typeDefs } from './schema'
+import { resolvers } from './resolvers'
 
 const port = process.env.PORT || 3000
 // const isDev = process.env.NODE_ENV !== 'production'
