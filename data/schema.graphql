@@ -1,0 +1,75 @@
+type Client {
+    _id: ID
+    name: String!
+    lastname: String!
+    company: String
+    emails: [Email]
+    age: Int
+    type: ClientType!
+    orders: [Order]
+}
+
+type Email {
+    email: String!
+}
+
+type Order {
+    product: String!
+    price: Float!
+}
+
+""" Asigna la categoria del cliente """
+enum ClientType {
+    BASIC
+    PREMIUN
+}
+
+type Query {
+    getClient(_id: ID!): Client
+    getClients(limit: Int): [Client]
+}
+
+input OrderInput {
+    product: String!
+    price: Float!
+}
+
+input EmailInput {
+    email: String!
+}
+
+""" Campos para los clientes nuevos """
+input ClientInput {
+    name: String!
+    lastname: String!
+    company: String
+    emails: [EmailInput]
+    age: Int
+    type: ClientType!
+    orders: [OrderInput]
+}
+
+""" Campos para actualizar clientes """
+input ClientUpdateInput {
+    _id: ID!
+    name: String!
+    lastname: String!
+    company: String
+    emails: [EmailInput]
+    age: Int
+    type: ClientType!
+    orders: [OrderInput]
+}
+
+""" Mutation para crear nuevos clientes """
+type Mutation {
+    # Nombre del resolver, input con datos y valor que retorna
+    """ Permite crear nuevos clientes """
+    createClient(input: ClientInput!) : Client
+
+    """ Permite actualizar clientes """
+    updateClient(input: ClientUpdateInput!) : Client
+    
+    """ Permite eliminar un cliente """
+    removeClient(_id: ID!): String
+}
