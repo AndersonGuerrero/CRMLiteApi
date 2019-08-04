@@ -1,24 +1,17 @@
 import express from 'express'
 import 'dotenv/config'
-import graphqlHTTP from 'express-graphql'
-import { schema } from './data/schema'
+import { ApolloServer } from 'apollo-server-express'
+import { typeDefs } from './data/schema'
+import { resolvers } from './data/resolvers'
 
 const port = process.env.PORT || 3000
-const isDev = process.env.NODE_ENV !== 'production'
+// const isDev = process.env.NODE_ENV !== 'production'
 
 const app = express()
+const server = new ApolloServer({ typeDefs, resolvers })
 
-app.get('/', (req, res) => {
-  res.send('api is working')
-})
+server.applyMiddleware({ app })
 
-app.use('/api', graphqlHTTP({
-  // schema a utilizar
-  schema,
-  // Utilizamos graphiql
-  graphiql: isDev
-}))
-
-app.listen(port, () => {
-  console.log(`server running in the port ${port}`)
+app.listen({ port: port }, () => {
+  console.log(`server running ${server.graphqlPath} the port ${port}`)
 })
