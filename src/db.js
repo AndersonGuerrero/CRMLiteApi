@@ -10,7 +10,9 @@ const {
   DB_NAME
 } = process.env
 
-const connectString = `://${DB_USER}:${DB_PASSWD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
+let connectString
+if (!DB_PORT) connectString = `://${DB_USER}:${DB_PASSWD}@${DB_HOST}/${DB_NAME}`
+else connectString = `://${DB_USER}:${DB_PASSWD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
 
 mongoose.connect(`mongodb${connectString}`, { useNewUrlParser: true }, (error, db) => {
   if (error) mongoose.connect(`mongodb+srv${connectString}`, { useNewUrlParser: true })

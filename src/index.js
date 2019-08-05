@@ -1,13 +1,14 @@
 import express from 'express'
-import 'dotenv/config'
 import { ApolloServer } from 'apollo-server-express'
-import { typeDefs } from './schema'
+import typeDefs from './schema.graphql'
 import { resolvers } from './resolvers'
 
 const port = process.env.PORT || 3000
-// const isDev = process.env.NODE_ENV !== 'production'
+
+console.log(process.env.NODE_ENV)
 
 const app = express()
+
 const server = new ApolloServer({ typeDefs, resolvers })
 
 server.applyMiddleware({ app })

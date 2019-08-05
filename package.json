@@ -4,11 +4,11 @@
   "description": "Graphql-Express-Apollo-Api",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.js --exec babel-node -e js",
-    "clean": "rm -rf build && mkdir build",
-    "build-babel": "babel -d ./build ./src -s",
-    "build": "npm run clean && npm run build-babel",
-    "start": "npm run build && node ./build/index.js"
+    "dev": "export NODE_ENV=development && webpack  --env development --progress --colors --watch",
+    "clean": "rm -rf dist && mkdir dist",
+    "build-webpack": "export NODE_ENV=production && webpack -p --env production --progress --colors",
+    "build": "npm run clean && npm run build-webpack",
+    "start": "npm run build && node ./dist/server.bundle.min.js"
   },
   "repository": {
     "type": "git",
@@ -24,8 +24,12 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-0": "^6.24.1",
+    "graphql-import-loader": "^0.2.1",
     "nodemon": "^1.19.1",
-    "standard": "^13.1.0"
+    "nodemon-webpack-plugin": "^4.0.8",
+    "standard": "^13.1.0",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6"
   },
   "dependencies": {
     "apollo-server-express": "^2.8.1",
@@ -35,7 +39,8 @@
     "graphql": "^14.4.2",
     "graphql-import": "^0.7.1",
     "graphql-tools": "^4.0.5",
-    "mongoose": "^5.6.8"
+    "mongoose": "^5.6.8",
+    "webpack-dotenv-plugin": "^2.1.0"
   },
   "eslintConfig": {
     "extends": [
