@@ -7,6 +7,7 @@
 .env
 npm-debug.log
 
+now.json
 dist
 build
 node_modules

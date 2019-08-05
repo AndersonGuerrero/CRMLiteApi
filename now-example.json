@@ -4,7 +4,13 @@
     "alias": ["crm-lite-api"],
     "builds": [{ "src": "build/index.js", "use": "@now/node" }],
     "env":  {
-      "NODE_ENV": "develop"
+      "NODE_ENV": "develop",
+      "DB_USER":"user",
+      "DB_PASSWD":"pass",
+      "DB_HOST":"localhost",
+      "DB_PORT":"",
+      "DB_NAME":"crm-lite-api",
+      "PORT":"8000"
     },
     "routes": [{
       "headers": {
