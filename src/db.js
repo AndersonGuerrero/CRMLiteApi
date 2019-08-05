@@ -10,7 +10,12 @@ const {
   DB_NAME
 } = process.env
 
-mongoose.connect(`mongodb://${DB_USER}:${DB_PASSWD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, { useNewUrlParser: true })
+const connectString = `://${DB_USER}:${DB_PASSWD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
+
+mongoose.connect(`mongodb${connectString}`, { useNewUrlParser: true }, (error, db) => {
+  if (error) mongoose.connect(`mongodb+srv${connectString}`, { useNewUrlParser: true })
+  else console.log('Connected to Server MongoDB successfully!')
+})
 
 // Definir el schema de clientes
 const clientSchema = new mongoose.Schema({
