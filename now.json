@@ -3,6 +3,9 @@
     "name": "crm-lite-api",
     "alias": ["crm-lite-api"],
     "builds": [{ "src": "build/index.js", "use": "@now/node" }],
+    "env":  {
+      "NODE_ENV": "develop"
+    },
     "routes": [{
       "headers": {
           "Access-Control-Allow-Origin": "*",
