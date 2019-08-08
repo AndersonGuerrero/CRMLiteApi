@@ -35,9 +35,9 @@ export const resolvers = {
     },
     updateClient: (root, { input }) => {
       return new Promise((resolve, reject) => {
-        Clients.updateOne({ _id: input._id }, input, { new: true }, (error, client) => {
+        Clients.updateOne({ _id: input._id }, input, { upsert: true }, (error) => {
           if (error) reject(error)
-          else resolve(client)
+          else resolve(input)
         })
       })
     },
