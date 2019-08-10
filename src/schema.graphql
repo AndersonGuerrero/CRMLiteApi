@@ -24,9 +24,14 @@ enum ClientType {
     PREMIUM
 }
 
+type ClientResult {
+    clients: [Client]
+    totalCount: Int
+  }
+
 type Query {
     getClient(_id: ID!): Client
-    getClients(limit: Int, offset: Int): [Client]
+    getClients(limit: Int, offset: Int): ClientResult
 }
 
 input OrderInput {

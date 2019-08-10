@@ -11,8 +11,19 @@ export const resolvers = {
         })
       })
     },
-    getClients: (root, { limit }) => {
-      return Clients.find({}).limit(limit)
+    getClients: (root, { limit, offset }) => {
+      return new Promise((resolve, reject) => {
+        Clients.find({}, null, { limit, skip: offset }, (error, clients) => {
+            if (error) reject(error)
+            Clients.find({}, (error, Allclients) => {
+              if (error) reject(error)
+              resolve({
+                clients: clients,
+                totalCount: Allclients.length
+              })  
+            })
+        })
+      })
     }
   },
   Mutation: {
