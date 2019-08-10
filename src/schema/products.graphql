@@ -19,9 +19,9 @@ input ProductInput{
 
 input ProductUpdateInput{
 	_id: ID!
-	name: String!
-	price: Float!
-	stock: Int!
+	name: String
+	price: Float
+	stock: Int
 }
 
 type Mutation {
