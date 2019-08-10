@@ -15,11 +15,10 @@ export const resolvers = {
       return new Promise((resolve, reject) => {
         Clients.find({}, null, { limit, skip: offset }, (error, clients) => {
             if (error) reject(error)
-            Clients.find({}, (error, Allclients) => {
-              if (error) reject(error)
+            Clients.estimatedDocumentCount((error, totalCount)=>{
               resolve({
-                clients: clients,
-                totalCount: Allclients.length
+                clients,
+                totalCount
               })  
             })
         })
