@@ -1,7 +1,7 @@
-import { Clients } from './db'
+import { Clients } from '../db'
 
 // Resolver
-export const resolvers = {
+export const clientsResolver = {
   Query: {
     getClient: (root, { _id }) => {
       return new Promise((resolve, reject) => {
@@ -14,12 +14,12 @@ export const resolvers = {
     getClients: (root, { limit, offset }) => {
       return new Promise((resolve, reject) => {
         Clients.find({}, null, { limit, skip: offset }, (error, clients) => {
-            if (error) reject(error)
-            else resolve(clients)
+          if (error) reject(error)
+          else resolve(clients)
         })
       })
     },
-    getTotalClients: (root) =>{
+    getTotalClients: (root) => {
       return new Promise((resolve, reject) => {
         Clients.estimatedDocumentCount((error, count) => {
           if (error) reject(error)
@@ -61,6 +61,6 @@ export const resolvers = {
           else resolve(`Client ${_id} is delete!`)
         })
       })
-    },
+    }
   }
 }

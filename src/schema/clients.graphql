@@ -6,17 +6,13 @@ type Client {
     emails: [Email]
     age: Int
     type: ClientType!
-    orders: [Order]
+    orders: [Product]
 }
 
 type Email {
     email: String!
 }
 
-type Order {
-    product: String!
-    price: Float!
-}
 
 """ Asigna la categoria del cliente """
 enum ClientType {
@@ -29,6 +25,7 @@ type Query {
     getClients(limit: Int, offset: Int): [Client]
     getTotalClients: Int
 }
+
 
 input OrderInput {
     product: String!

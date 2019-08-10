@@ -1,0 +1,32 @@
+type Product {
+    _id: ID
+    name: String!
+    price: Float!
+    stock: Int!
+}
+
+type Query {
+    getProduct(_id: ID!): Product
+    getProducts(limit: Int, offset: Int): [Product]
+    getTotalProducts: Int
+}
+
+input ProductInput{
+	name: String!
+	price: Float!
+	stock: Int!
+}
+
+input ProductUpdateInput{
+	_id: ID!
+	name: String!
+	price: Float!
+	stock: Int!
+}
+
+type Mutation {
+	createProduct(input: ProductInput!) : Product	
+	updateProduct(input: ProductUpdateInput!) : Product	
+	""" Permite eliminar un producto """
+    removeProduct(_id: ID!): String
+}

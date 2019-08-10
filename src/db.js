@@ -30,6 +30,13 @@ const clientSchema = new mongoose.Schema({
   orders: Array
 })
 
-const Clients = mongoose.model('clients', clientSchema)
+const productSchema = new mongoose.Schema({
+  name: String,
+  price: Number,
+  stock: Number
+})
 
-export { Clients }
+const Clients = mongoose.model('clients', clientSchema)
+const Products = mongoose.model('products', productSchema)
+
+export { Clients, Products }
