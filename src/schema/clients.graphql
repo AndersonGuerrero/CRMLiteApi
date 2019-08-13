@@ -6,7 +6,6 @@ type Client {
     emails: [Email]
     age: Int
     type: ClientType!
-    orders: [Product]
 }
 
 type Email {
@@ -27,11 +26,6 @@ type Query {
 }
 
 
-input OrderInput {
-    product: String!
-    price: Float!
-}
-
 input EmailInput {
     email: String!
 }
@@ -44,7 +38,6 @@ input ClientInput {
     emails: [EmailInput]
     age: Int
     type: ClientType!
-    orders: [OrderInput]
 }
 
 """ Campos para actualizar clientes """
@@ -56,7 +49,6 @@ input ClientUpdateInput {
     emails: [EmailInput]
     age: Int
     type: ClientType!
-    orders: [OrderInput]
 }
 
 """ Mutation para crear nuevos clientes """

@@ -1,2 +1,3 @@
 # import * from 'src/schema/clients.graphql'
 # import * from 'src/schema/products.graphql'
+# import * from 'src/schema/orders.graphql'

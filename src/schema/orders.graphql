@@ -1,0 +1,62 @@
+type Order {
+    _id: ID
+    order: [OrderProduct]
+    total: Float!
+    date: String
+    client: String!
+    state: OderStatus
+}
+
+type OrderProduct {
+    product_id: ID!
+    cantidad: Int!
+}
+
+""" Asigna el status del Pedido """
+enum OderStatus {
+    PENDIENTE
+}
+
+input OrderProductInput {
+    product_id: ID!
+    cantidad: Int!
+}
+
+""" Campos para los pedidos nuevos """
+input OrderInput {
+    order: [OrderProductInput]
+    total: Float!
+    date: String
+    client: String!
+    state: OderStatus
+}
+
+""" Campos para actualizar pedidos """
+input OrderUpdateInput {
+    _id: ID!
+    name: String!
+    order: [OrderProductInput]
+    total: Float!
+    date: String
+    client: String!
+    state: OderStatus
+}
+
+type Query {
+    getOrder(_id: ID!): Order
+    getOrders(limit: Int, offset: Int): [Order]
+    getTotalOrders: Int
+}
+
+""" Mutation para crear nuevos clientes """
+type Mutation {
+    # Nombre del resolver, input con datos y valor que retorna
+    """ Permite crear nuevo pedido """
+    createOrder(input: OrderInput!) : Order
+
+    """ Permite actualizar pedidos """
+    updateOrder(input: OrderUpdateInput!) : Client
+    
+    """ Permite eliminar un pedido """
+    removeOrder(_id: ID!): String
+}

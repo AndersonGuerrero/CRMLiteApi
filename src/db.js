@@ -35,9 +35,19 @@ const productSchema = new mongoose.Schema({
   price: Number,
   stock: Number
 })
-productSchema.index({name: 'text'});
+
+const orderSchema = new mongoose.Schema({
+  order: Array,
+  total: Number,
+  date: Date,
+  client: String,
+  state: String
+})
+
+productSchema.index({ name: 'text' })
 
 const Clients = mongoose.model('clients', clientSchema)
 const Products = mongoose.model('products', productSchema)
+const Orders = mongoose.model('orders', orderSchema)
 
-export { Clients, Products }
+export { Clients, Products, Orders }
