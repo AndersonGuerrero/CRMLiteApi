@@ -15,6 +15,9 @@ type OrderProduct {
 """ Asigna el status del Pedido """
 enum OderStatus {
     PENDIENTE
+    PENDING
+    COMPLETED
+    CANCELLED
 }
 
 input OrderProductInput {

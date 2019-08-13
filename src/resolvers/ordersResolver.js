@@ -38,7 +38,7 @@ export const ordersResolver = {
         total: input.total,
         date: new Date(),
         client: input.client,
-        state: 'PENDIENTE'
+        state: 'PENDING'
       })
       return new Promise((resolve, reject) => {
         input.order.forEach(p => {
