@@ -1,4 +1,4 @@
-import { Orders } from '../db'
+import { Orders, Products } from '../db'
 
 // Resolver
 export const ordersResolver = {
@@ -39,6 +39,15 @@ export const ordersResolver = {
         state: 'PENDIENTE'
       })
       return new Promise((resolve, reject) => {
+        input.order.forEach(p => {
+          console.log(p.product_id)
+          Products.updateOne(
+            { _id: p.product_id },
+            { $inc: { stock: -p.quantity } },
+            { upsert: true },
+            (error, data) => { if (error) reject(error) }
+          )
+        })
         newOrder.save((error) => {
           if (error) reject(error)
           else resolve(newOrder)

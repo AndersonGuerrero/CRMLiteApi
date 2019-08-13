@@ -9,7 +9,7 @@ type Order {
 
 type OrderProduct {
     product_id: ID!
-    cantidad: Int!
+    quantity: Int!
 }
 
 """ Asigna el status del Pedido """
@@ -19,7 +19,7 @@ enum OderStatus {
 
 input OrderProductInput {
     product_id: ID!
-    cantidad: Int!
+    quantity: Int!
 }
 
 """ Campos para los pedidos nuevos """
