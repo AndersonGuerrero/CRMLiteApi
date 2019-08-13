@@ -11,9 +11,11 @@ export const ordersResolver = {
         })
       })
     },
-    getOrders: (root, { limit, offset }) => {
+    getOrders: (root, { limit, offset, client }) => {
       return new Promise((resolve, reject) => {
-        Orders.find({}, null, { limit, skip: offset }, (error, orders) => {
+        let filter = {}
+        if (client) filter = { client: client } 
+        Orders.find(filter, null, { limit, skip: offset }, (error, orders) => {
           if (error) reject(error)
           else resolve(orders)
         })

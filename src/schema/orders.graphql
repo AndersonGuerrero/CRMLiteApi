@@ -44,7 +44,7 @@ input OrderUpdateInput {
 
 type Query {
     getOrder(_id: ID!): Order
-    getOrders(limit: Int, offset: Int): [Order]
+    getOrders(limit: Int, offset: Int, client: ID): [Order]
     getTotalOrders: Int
 }
 
