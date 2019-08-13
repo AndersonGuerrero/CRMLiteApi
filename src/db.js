@@ -35,6 +35,7 @@ const productSchema = new mongoose.Schema({
   price: Number,
   stock: Number
 })
+productSchema.index({name: 'text'});
 
 const Clients = mongoose.model('clients', clientSchema)
 const Products = mongoose.model('products', productSchema)
