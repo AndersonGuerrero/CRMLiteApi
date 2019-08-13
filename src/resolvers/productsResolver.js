@@ -11,10 +11,11 @@ export const productsResolver = {
         })
       })
     },
-    getProducts: (root, { limit, offset, search }) => {
+    getProducts: (root, { limit, offset, search, stock }) => {
       return new Promise((resolve, reject) => {
         let objectfind = {}
         if (search) objectfind = {$text: {$search: search}}
+        if (stock) objectfind = {...objectfind, stock: {$gt: 0}}
         Products.find(objectfind, null, { limit, skip: offset }, (error, products) => {
           if (error) reject(error)
           else resolve(products)

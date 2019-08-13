@@ -7,7 +7,7 @@ type Product {
 
 type Query {
     getProduct(_id: ID!): Product
-    getProducts(limit: Int, offset: Int, search: String): [Product]
+    getProducts(limit: Int, offset: Int, search: String, stock: Boolean): [Product]
     getTotalProducts: Int
 }
 
