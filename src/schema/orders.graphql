@@ -37,7 +37,6 @@ input OrderInput {
 """ Campos para actualizar pedidos """
 input OrderUpdateInput {
     _id: ID!
-    name: String!
     order: [OrderProductInput]
     total: Float!
     date: String
@@ -58,7 +57,7 @@ type Mutation {
     createOrder(input: OrderInput!) : Order
 
     """ Permite actualizar pedidos """
-    updateOrder(input: OrderUpdateInput!) : Client
+    updateOrder(input: OrderUpdateInput!) : Order
     
     """ Permite eliminar un pedido """
     removeOrder(_id: ID!): String
