@@ -41,15 +41,6 @@ export const ordersResolver = {
         state: 'PENDING'
       })
       return new Promise((resolve, reject) => {
-        input.order.forEach(p => {
-          console.log(p.product_id)
-          Products.updateOne(
-            { _id: p.product_id },
-            { $inc: { stock: -p.quantity } },
-            { upsert: true },
-            (error, data) => { if (error) reject(error) }
-          )
-        })
         newOrder.save((error) => {
           if (error) reject(error)
           else resolve(newOrder)
@@ -58,6 +49,19 @@ export const ordersResolver = {
     },
     updateOrder: (root, { input }) => {
       return new Promise((resolve, reject) => {
+        const { state } = input
+        let action 
+        if (state === 'COMPLETED') action = '-'
+        else if (state === 'CANCELLED') action = '+'
+
+        input.order.forEach(p => {
+          Products.updateOne(
+            { _id: p.product_id },
+            { $inc: { stock: `${action}${p.quantity}` } },
+            { upsert: true },
+            (error, data) => { if (error) reject(error) }
+          )
+        })
         Orders.updateOne({ _id: input._id }, input, { upsert: true }, (error) => {
           if (error) reject(error)
           else resolve(input)
