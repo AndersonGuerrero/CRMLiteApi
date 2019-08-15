@@ -50,7 +50,7 @@ export const ordersResolver = {
     updateOrder: (root, { input }) => {
       return new Promise((resolve, reject) => {
         const { state } = input
-        let action 
+        let action = '+'
         if (state === 'COMPLETED') action = '-'
         else if (state === 'CANCELLED') action = '+'
 
