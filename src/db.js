@@ -40,7 +40,7 @@ const orderSchema = new mongoose.Schema({
   order: Array,
   total: Number,
   date: Date,
-  client: String,
+  client: mongoose.Types.ObjectId,
   state: String
 })
 
