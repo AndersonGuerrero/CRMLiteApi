@@ -1,6 +1,8 @@
 import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
 
 mongoose.Promise = global.Promise
+mongoose.set('useCreateIndex', true);
 
 const {
   DB_USER,
@@ -31,7 +33,7 @@ const clientSchema = new mongoose.Schema({
 })
 
 const productSchema = new mongoose.Schema({
-  name: String,
+  name: { type: String, index: true },
   price: Number,
   stock: Number
 })
@@ -44,10 +46,33 @@ const orderSchema = new mongoose.Schema({
   state: String
 })
 
-productSchema.index({ name: 'text' })
+// Modelo de usuarios
+const userSchema = new mongoose.Schema({
+  name: String,
+  lastname: String,
+  username: String,
+  password: String
+})
+
+// Hash password
+userSchema.pre('save', function (next) {
+  if (!this.isModified('password')) {
+    return next()
+  }
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) return next(err)
+
+    bcrypt.hash(this.password, salt, (err, hash) => {
+      if (err) return next(err)
+      this.password = hash
+      next()
+    })
+  })
+})
 
 const Clients = mongoose.model('clients', clientSchema)
 const Products = mongoose.model('products', productSchema)
 const Orders = mongoose.model('orders', orderSchema)
+const Users = mongoose.model('users', userSchema)
 
-export { Clients, Products, Orders }
+export { Clients, Products, Orders, Users }

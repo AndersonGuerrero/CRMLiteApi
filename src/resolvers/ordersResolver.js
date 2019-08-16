@@ -14,7 +14,7 @@ export const ordersResolver = {
     getOrders: (root, { limit, offset, client }) => {
       return new Promise((resolve, reject) => {
         let filter = {}
-        if (client) filter = { client: client } 
+        if (client) filter = { client: client }
         Orders.find(filter, null, { limit, skip: offset }, (error, orders) => {
           if (error) reject(error)
           else resolve(orders)
@@ -33,26 +33,26 @@ export const ordersResolver = {
       return new Promise((resolve, reject) => {
         Orders.aggregate([
           {
-            $match : {state: "COMPLETED"}
+            $match : { state: 'COMPLETED' }
           },
           {
-            $group: { _id: "$client", total: { $sum: "$total" } }
+            $group: { _id: '$client', total: { $sum: '$total' } }
           },
           {
             $lookup: {
-              from: "clients",
-              localField: "_id",
-              foreignField: "_id",
-              as: "client"
+              from: 'clients',
+              localField: '_id',
+              foreignField: '_id',
+              as: 'client'
             }
           },
           {
-            $sort: { total: -1}
+            $sort: { total: -1 }
           },
           {
             $limit: 10
           }
-        ], (error, result)=>{
+        ], (error, result) => {
           if (error) reject(`Error: ${error}`)
           else resolve(result)
         })
