@@ -2,7 +2,7 @@ const path = require('path')
 const DotenvPlugin = require('webpack-dotenv-plugin')
 const webpack = require('webpack')
 const NoDemonPlugin = require('nodemon-webpack-plugin')
-var nodeExternals = require('webpack-node-externals')
+const nodeExternals = require('webpack-node-externals')
 
 require('dotenv').config({
   path: '.env'
