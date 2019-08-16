@@ -28,6 +28,35 @@ export const ordersResolver = {
           else resolve(count)
         })
       })
+    },
+    getTopClients: (root) => {
+      return new Promise((resolve, reject) => {
+        Orders.aggregate([
+          {
+            $match : {state: "COMPLETED"}
+          },
+          {
+            $group: { _id: "$client", total: { $sum: "$total" } }
+          },
+          {
+            $lookup: {
+              from: "clients",
+              localField: "_id",
+              foreignField: "_id",
+              as: "client"
+            }
+          },
+          {
+            $sort: { total: -1}
+          },
+          {
+            $limit: 10
+          }
+        ], (error, result)=>{
+          if (error) reject(`Error: ${error}`)
+          else resolve(result)
+        })
+      })
     }
   },
   Mutation: {

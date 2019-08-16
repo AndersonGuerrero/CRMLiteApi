@@ -12,6 +12,11 @@ type OrderProduct {
     quantity: Int!
 }
 
+type TopClient {
+    total: Float
+    client: [Client]
+}
+
 """ Asigna el status del Pedido """
 enum OderStatus {
     PENDIENTE
@@ -48,6 +53,7 @@ type Query {
     getOrder(_id: ID!): Order
     getOrders(limit: Int, offset: Int, client: ID): [Order]
     getTotalOrders: Int
+    getTopClients: [ TopClient ]
 }
 
 """ Mutation para crear nuevos clientes """
