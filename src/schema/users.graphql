@@ -1,0 +1,49 @@
+type User {
+    _id: ID
+    name: String!
+    lastname: String!
+    username: String!
+    password: String!
+}
+
+type UserList {
+    _id: ID
+    name: String
+    lastname: String
+    username: String
+}
+
+type createUserOutput {
+    error: Boolean
+    message: String
+}
+
+
+type Query {
+    getUser(_id: ID!): Client
+    getUsers(limit: Int, offset: Int): [UserList]
+}
+
+
+""" Campos para los usuarios nuevos """
+input UserInput {
+    name: String!
+    lastname: String!
+    username: String!
+    password: String!
+}
+
+""" Campos para actualizar usuarios """
+input UserUpdateInput {
+    _id: ID!
+    name: String!
+    lastname: String!
+    username: String!
+    pasword: String
+}
+
+type Mutation {
+    # Nombre del resolver, input con datos y valor que retorna
+    """ Permite crear nuevos usuarios """
+    createUser(input: UserInput) : createUserOutput
+}
