@@ -7,11 +7,16 @@ const nodeExternals = require('webpack-node-externals')
 require('dotenv').config({
   path: '.env'
 })
+let extern = [nodeExternals()]
+
+if (process.env.isNow === 'true') {
+  extern = path.join(__dirname, '../node_modules')
+}
 
 module.exports = {
   entry: './src/index.js',
   target: 'node',
-  externals: [nodeExternals()],
+  externals: extern,
   stats: {
     errors: true,
     warnings: false

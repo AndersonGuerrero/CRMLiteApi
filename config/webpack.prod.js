@@ -1,7 +1,6 @@
 const path = require('path')
 const DotenvPlugin = require('webpack-dotenv-plugin')
 const webpack = require('webpack')
-const nodeExternals = require('webpack-node-externals')
 
 require('dotenv').config({
   path: '.env'
@@ -10,7 +9,6 @@ require('dotenv').config({
 module.exports = {
   entry: './src/index.js',
   target: 'node',
-  externals: [nodeExternals()],
   stats: {
     errors: true,
     warnings: false

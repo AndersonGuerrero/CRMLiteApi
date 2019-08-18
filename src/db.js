@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 
 mongoose.Promise = global.Promise
-mongoose.set('useCreateIndex', true);
+mongoose.set('useCreateIndex', true)
 
 const {
   DB_USER,
