@@ -6,22 +6,28 @@ type User {
     password: String!
 }
 
-type UserList {
+type SecureUser {
     _id: ID
     name: String
     lastname: String
     username: String
 }
 
-type createUserOutput {
+type CreateUserOutput {
     error: Boolean
     message: String
 }
 
+type authenticationOutput {
+    error: Boolean
+    message: String
+    token: String
+}
+
 
 type Query {
-    getUser(_id: ID!): Client
-    getUsers(limit: Int, offset: Int): [UserList]
+    getUsers(limit: Int, offset: Int): [SecureUser]
+    getAuthenticatedUser(limit: Int, offset: Int): SecureUser
 }
 
 
@@ -32,6 +38,13 @@ input UserInput {
     username: String!
     password: String!
 }
+
+""" Campos para login de usuarios """
+input AuthInput {
+    username: String!
+    password: String!
+}
+
 
 """ Campos para actualizar usuarios """
 input UserUpdateInput {
@@ -45,5 +58,6 @@ input UserUpdateInput {
 type Mutation {
     # Nombre del resolver, input con datos y valor que retorna
     """ Permite crear nuevos usuarios """
-    createUser(input: UserInput) : createUserOutput
+    createUser(input: UserInput) : CreateUserOutput
+    authentication(input: AuthInput) : authenticationOutput
 }
