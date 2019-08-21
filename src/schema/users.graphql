@@ -27,7 +27,7 @@ type authenticationOutput {
 
 type Query {
     getUsers(limit: Int, offset: Int): [SecureUser]
-    getAuthenticatedUser(limit: Int, offset: Int): SecureUser
+    getAuthenticatedUser: SecureUser
 }
 
 
