@@ -29,7 +29,7 @@ export const usersResolver = {
   },
   Mutation: {
     createUser: async (root, { input }) => {
-      const { name, lastname, password, username } = input
+      const { name, lastname, password, username, role } = input
       let response = { error: false, message: '' }
       const userExist = await Users.findOne({ username })
       if (userExist) {
@@ -42,7 +42,8 @@ export const usersResolver = {
           name: name,
           lastname: lastname,
           username: username,
-          password: password
+          password: password,
+          role: role
         }).save()
         response = {
           error: false,

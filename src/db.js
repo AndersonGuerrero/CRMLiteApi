@@ -51,7 +51,8 @@ const userSchema = new mongoose.Schema({
   name: String,
   lastname: String,
   username: String,
-  password: String
+  password: String,
+  role: String
 })
 
 // Hash password
