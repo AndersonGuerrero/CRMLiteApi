@@ -36,7 +36,8 @@ export const clientsResolver = {
         emails: input.emails,
         company: input.company,
         age: input.age,
-        type: input.type
+        type: input.type,
+        seller: input.seller
       })
       return new Promise((resolve, reject) => {
         newClient.save((error) => {

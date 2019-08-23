@@ -6,6 +6,7 @@ type Client {
     emails: [Email]
     age: Int
     type: ClientType!
+    seller: ID
 }
 
 type Email {
@@ -38,6 +39,7 @@ input ClientInput {
     emails: [EmailInput]
     age: Int
     type: ClientType!
+    seller: ID!
 }
 
 """ Campos para actualizar clientes """
@@ -49,6 +51,7 @@ input ClientUpdateInput {
     emails: [EmailInput]
     age: Int
     type: ClientType!
+    seller: ID
 }
 
 """ Mutation para crear nuevos clientes """

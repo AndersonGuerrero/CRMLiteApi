@@ -29,7 +29,8 @@ const clientSchema = new mongoose.Schema({
   company: String,
   age: Number,
   type: String,
-  orders: Array
+  orders: Array,
+  seller: mongoose.Types.ObjectId
 })
 
 const productSchema = new mongoose.Schema({
