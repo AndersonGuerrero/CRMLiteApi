@@ -67,6 +67,7 @@ export const ordersResolver = {
         total: input.total,
         date: new Date(),
         client: input.client,
+        seller: input.seller,
         state: 'PENDING'
       })
       return new Promise((resolve, reject) => {

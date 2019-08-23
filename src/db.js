@@ -44,6 +44,7 @@ const orderSchema = new mongoose.Schema({
   total: Number,
   date: Date,
   client: mongoose.Types.ObjectId,
+  seller: mongoose.Types.ObjectId,
   state: String
 })
 

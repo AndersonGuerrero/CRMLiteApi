@@ -1,4 +1,6 @@
-import { Clients } from '../db'
+import mongoose from 'mongoose'
+import { Clients, Users } from '../db'
+const ObjectId = mongoose.Types.ObjectId
 
 // Resolver
 export const clientsResolver = {
@@ -11,12 +13,24 @@ export const clientsResolver = {
         })
       })
     },
-    getClients: (root, { limit, offset }) => {
+    getClients: (root, { limit, offset }, {currentUser}) => {
       return new Promise((resolve, reject) => {
-        Clients.find({}, null, { limit, skip: offset }, (error, clients) => {
-          if (error) reject(error)
-          else resolve(clients)
-        })
+        let filter = {}
+        if (currentUser){
+          Users.findById(currentUser.user, (error, user)=>{
+            if (user.role === 'SELLER'){
+              filter = {
+                seller: new ObjectId(currentUser.user)
+              }
+            }
+            Clients.find(filter, null, { limit, skip: offset }, (error, clients) => {
+              if (error) reject(error)
+              else resolve(clients)
+            })
+          })
+        }else{
+          resolve([])
+        }
       })
     },
     getTotalClients: (root) => {

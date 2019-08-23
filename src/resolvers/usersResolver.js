@@ -4,8 +4,8 @@ import jwt from 'jsonwebtoken'
 
 // Resolver
 const createToken = (user, secretKey, expiresIn) => {
-  const { username } = user
-  return jwt.sign({ username }, secretKey, { expiresIn }) 
+  const { _id } = user
+  return jwt.sign({ user:_id }, secretKey, { expiresIn }) 
 }
 
 export const usersResolver = {
@@ -15,7 +15,7 @@ export const usersResolver = {
         return null
       }
       // Opteniendo el usuario actual del request
-      const user = Users.findOne({username: currentUser.username})
+      const user = Users.findOne({_id: currentUser.user})
       return user
     },
     getUsers: (root, { limit, offset }) => {

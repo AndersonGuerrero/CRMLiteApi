@@ -23,6 +23,7 @@ const server = new ApolloServer({
           currentUser
         }
       }catch(error){
+        console.error('test')
         console.error(error)
       }
     }

@@ -44,7 +44,7 @@ input UserInput {
 
 enum UserRole {
     ADMIN
-    BASIC
+    SELLER
 }
 
 """ Campos para login de usuarios """

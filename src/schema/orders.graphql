@@ -4,6 +4,7 @@ type Order {
     total: Float!
     date: String
     client: String!
+    seller: String!
     state: OderStatus
 }
 
@@ -36,6 +37,7 @@ input OrderInput {
     total: Float!
     date: String
     client: String!
+    seller: String!
     state: OderStatus
 }
 
