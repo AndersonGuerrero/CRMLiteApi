@@ -33,12 +33,24 @@ export const clientsResolver = {
         }
       })
     },
-    getTotalClients: (root) => {
+    getTotalClients: (root, arg, {currentUser}) => {
       return new Promise((resolve, reject) => {
-        Clients.estimatedDocumentCount((error, count) => {
-          if (error) reject(error)
-          else resolve(count)
-        })
+        if (currentUser){
+          let filter = {}
+          Users.findById(currentUser.user, (error, user)=>{
+            if (user.role === 'SELLER'){
+              filter = {
+                seller: new ObjectId(currentUser.user)
+              }
+            }
+            Clients.find(filter, null, {}, (error, clients) => {
+              if (error) reject(error)
+              else resolve(clients.length)
+            })
+          })
+        }else{
+          resolve(0)
+        }
       })
     }
   },
