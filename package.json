@@ -30,7 +30,7 @@
     "nodemon-webpack-plugin": "^4.0.8",
     "standard": "^13.1.0",
     "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6",
+    "webpack-cli": "^3.3.12",
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
